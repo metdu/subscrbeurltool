@@ -1,0 +1,12 @@
+MYSQL_HOST = '149.129.84.249'
+MYSQL_PORT = 3306
+SQL_DB = 'lihao'
+MYSQL_USER = 'lihao'
+MYSQL_PWD = 'lihao123'
+
+MYRDS_HOST = '你的ip'
+MYRDS_PORT = '6379'
+RDS_DB = 2
+
+SERVER_PORT = 8888  #
+SALT = 'dsadsadsada' #
