@@ -59,12 +59,12 @@ def subscribe(setting_id):
         for fqurl in res:
             shuchu=shuchu+(fqurl['url'])+'\n'
     elif res[0]['user_type'] == '1':
-        sql = "select *from fq_url  a where a.url_status in ('0','1','2')"
+        sql = "select *from fq_url  a where a.url_status in (1','2')"
         res = conn_mysql(sql)
         for fqurl in res:
             shuchu=shuchu+(fqurl['url'])+'\n'
     elif res[0]['user_type'] == '2':
-        sql = "select *from fq_url  a where a.url_status in ('0','1','2')"
+        sql = "select *from fq_url  a where a.url_status in ('2')"
         res = conn_mysql(sql)
         for fqurl in res:
             shuchu=shuchu+(fqurl['url'])+'\n'
