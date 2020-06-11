@@ -121,7 +121,7 @@ def subscriberoot(setting_id):
 
 @server.route('/commitlogs', methods=['GET', 'POST'])
 def getcommitlogs():
-    file_object = open('//var//local//gitlog')
+    file_object = open('/var/local/gitlog')
     # 不要把open放在try中，以防止打开失败，那么就不用关闭了
     try:
         file_context = file_object.read()
