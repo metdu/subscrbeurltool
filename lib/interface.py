@@ -103,21 +103,6 @@ def subscribeqx(setting_id):
     encodestr = base64.b64encode(shuchu.encode('utf-8'))
     print(str(encodestr, 'utf-8'))
     return str(encodestr, 'utf-8')
-
-
-@server.route('/<setting_id>', methods=['GET', 'POST'])
-def subscriberoot(setting_id):
-    sql = 'select * from fq_users where user_url ="%s";' % setting_id
-    res = conn_mysql(sql)
-    shuchu = ''
-    if not res:
-        return '{code":200,"msg":"用户不存在}'
-    else:
-        shuchu = res[0]['fq_text']
-    encodestr = base64.b64encode(shuchu.encode('utf-8'))
-    print(str(encodestr, 'utf-8'))
-    return str(encodestr, 'utf-8')
-
 @server.route('/commitlogs/log',  methods=['GET', 'POST'])
 def getcommitlogs():
     file_object = open('/var/local/gitlog')
@@ -132,3 +117,17 @@ def getcommitlogs():
     # 除了以上方法，也可用with、contextlib都可以打开文件，且自动关闭文件，
     # 以防止打开的文件对象未关闭而占用内存
     return file_context
+
+@server.route('/<setting_id>', methods=['GET', 'POST'])
+def subscriberoot(setting_id):
+    sql = 'select * from fq_users where user_url ="%s";' % setting_id
+    res = conn_mysql(sql)
+    shuchu = ''
+    if not res:
+        return '{code":200,"msg":"用户不存在}'
+    else:
+        shuchu = res[0]['fq_text']
+    encodestr = base64.b64encode(shuchu.encode('utf-8'))
+    print(str(encodestr, 'utf-8'))
+    return str(encodestr, 'utf-8')
+
