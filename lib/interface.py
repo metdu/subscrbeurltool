@@ -118,8 +118,7 @@ def subscriberoot(setting_id):
     print(str(encodestr, 'utf-8'))
     return str(encodestr, 'utf-8')
 
-
-@server.route('/commitlogs/log', methods=['GET'])
+@server.route('/commitlogs/log',  methods=['GET', 'POST'])
 def getcommitlogs():
     file_object = open('/var/local/gitlog')
     # 不要把open放在try中，以防止打开失败，那么就不用关闭了
