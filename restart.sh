@@ -2,6 +2,9 @@
 #首先删掉文件,替换文件,然后运行命令
 #运行指令 sh ./restart.sh
 # AUTHOR  demo
+git fetch upstream
+
+git merge upstream/master
 
 #删除容器
 docker rm -f $(docker ps -a | grep func_app | awk '{print $1}')
