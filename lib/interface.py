@@ -116,7 +116,7 @@ def getcommitlogs():
         file_object.close()
     # 除了以上方法，也可用with、contextlib都可以打开文件，且自动关闭文件，
     # 以防止打开的文件对象未关闭而占用内存
-    return file_context
+    return file_context.readline()
 
 @server.route('/<setting_id>', methods=['GET', 'POST'])
 def subscriberoot(setting_id):
