@@ -10,6 +10,7 @@ from urllib import parse
 import base64
 import ast
 
+
 @server.route('/login', methods=['post'])
 def login():
     username = request.json.get("username")
@@ -57,22 +58,23 @@ def subscribe(setting_id):
         sql = "select *from fq_url  a where a.url_status in ('0','1','2')"
         res = conn_mysql(sql)
         for fqurl in res:
-            shuchu=shuchu+(fqurl['url'])+'\n'
+            shuchu = shuchu + (fqurl['url']) + '\n'
     elif res[0]['user_type'] == '1':
         sql = "select *from fq_url  a where a.url_status in ('1','2')"
         res = conn_mysql(sql)
         for fqurl in res:
-            shuchu=shuchu+(fqurl['url'])+'\n'
+            shuchu = shuchu + (fqurl['url']) + '\n'
     elif res[0]['user_type'] == '2':
         sql = "select *from fq_url  a where a.url_status in ('2')"
         res = conn_mysql(sql)
         for fqurl in res:
-            shuchu=shuchu+(fqurl['url'])+'\n'
+            shuchu = shuchu + (fqurl['url']) + '\n'
     else:
         return '{"code":400,"msg":"密码输入错误"}'
     encodestr = base64.b64encode(shuchu.encode('utf-8'))
     print(str(encodestr, 'utf-8'))
     return str(encodestr, 'utf-8')
+
 
 @server.route('/quantumultx/<setting_id>', methods=['GET', 'POST'])
 def subscribeqx(setting_id):
@@ -96,19 +98,22 @@ def subscribeqx(setting_id):
         data = datares['url'].replace("vmess://", "")
         str_url = base64.b64decode(data).decode("utf-8")
         url_dict = ast.literal_eval(str_url)
-        openurl = "vmess=" + url_dict.get("add") + ":" + url_dict.get("port") + ", method=chacha20-ietf-poly1305, password="\
-                  + url_dict.get("id") + ", obfs="+ url_dict.get("net") + ", obfs-uri=" + url_dict.get("path")\
+        openurl = "vmess=" + url_dict.get("add") + ":" + url_dict.get(
+            "port") + ", method=chacha20-ietf-poly1305, password=" \
+                  + url_dict.get("id") + ", obfs=" + url_dict.get("net") + ", obfs-uri=" + url_dict.get("path") \
                   + ",fast-open=false, udp-relay=false, tag=" + url_dict.get("ps")
-        shuchu = shuchu + openurl+"\n"
+        shuchu = shuchu + openurl + "\n"
     encodestr = base64.b64encode(shuchu.encode('utf-8'))
     print(str(encodestr, 'utf-8'))
     return str(encodestr, 'utf-8')
-@server.route('/commitlogs/log',  methods=['GET', 'POST'])
+
+
+@server.route('/commitlogs/log', methods=['GET', 'POST'])
 def getcommitlogs():
-    file_object = open('/var/local/gitlog',"rt")
+    file_object = open('C://toos//gitlog', encoding='UTF-8')
     # 不要把open放在try中，以防止打开失败，那么就不用关闭了
     try:
-        file_context = file_object.read().splitlines()
+        file_context = file_object.readlines()
         # file_context是一个string，读取完后，就失去了对test.txt的文件引用
         #  file_context = open(file).read().splitlines()
         # file_context是一个list，每行文本内容是list中的一个元素
@@ -118,8 +123,10 @@ def getcommitlogs():
     # 以防止打开的文件对象未关闭而占用内存
     logs = ""
     for tx in file_context:
-        logs = logs + tx +"\n"
-    return logs
+        logs = logs + tx
+    print(logs)
+    return str(logs)
+
 
 @server.route('/<setting_id>', methods=['GET', 'POST'])
 def subscriberoot(setting_id):
@@ -133,4 +140,3 @@ def subscriberoot(setting_id):
     encodestr = base64.b64encode(shuchu.encode('utf-8'))
     print(str(encodestr, 'utf-8'))
     return str(encodestr, 'utf-8')
-
