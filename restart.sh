@@ -13,4 +13,4 @@ docker rmi func_app
 #打包镜像
 docker build . -t func_app
 #启动容器
-docker run -d -p 8085:8888 --restart=always  --name func_app func_app
+docker run -d -p 8085:8888 -v /var/local:/var/local  --restart=always  --name func_app func_app
