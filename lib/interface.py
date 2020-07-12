@@ -110,10 +110,10 @@ def subscribeqx(setting_id):
 
 @server.route('/commitlogs/log', methods=['GET', 'POST'])
 def getcommitlogs():
-    file_object = open('C://toos//gitlog', encoding='UTF-8')
+    file_object = open('/var/local/gitlog', "rt")
     # 不要把open放在try中，以防止打开失败，那么就不用关闭了
     try:
-        file_context = file_object.readlines()
+        file_context = file_object.read().splitlines()
         # file_context是一个string，读取完后，就失去了对test.txt的文件引用
         #  file_context = open(file).read().splitlines()
         # file_context是一个list，每行文本内容是list中的一个元素
@@ -123,9 +123,8 @@ def getcommitlogs():
     # 以防止打开的文件对象未关闭而占用内存
     logs = ""
     for tx in file_context:
-        logs = logs + tx
-    print(logs)
-    return str(logs)
+        logs = logs + tx + "\n"
+    return logs
 
 
 @server.route('/<setting_id>', methods=['GET', 'POST'])
