@@ -1,0 +1,11 @@
+[Unit]
+Description = subscrbeurltool
+After=network.target
+After=network-online.target
+Wants=network-online.target
+[Service]
+ExecStart =/usr/bin/nohup /var/local/subscrbeurltool/subtool.sh &
+Type = simple
+
+[Install]
+WantedBy = multi-user.target
