@@ -1,4 +1,4 @@
-from conf.setting import MYSQL_HOST,MYSQL_PORT,SQL_DB,SALT,MYRDS_HOST,MYRDS_PORT,RDS_DB,MYSQL_USER,MYSQL_PWD
+'''from conf.setting import MYSQL_HOST,MYSQL_PORT,SQL_DB,SALT,MYRDS_HOST,MYRDS_PORT,RDS_DB,MYSQL_USER,MYSQL_PWD
 
 def md5_passwd(str):
     str=str+SALT
@@ -18,6 +18,8 @@ def conn_mysql(sql):
     cur.close()
     conn.close()
     return res
+'''
+
 
 def my_json(dic):
     import json

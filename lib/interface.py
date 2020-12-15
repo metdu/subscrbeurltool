@@ -1,3 +1,6 @@
+
+
+'''
 import flask
 from lib.tool import conn_mysql, md5_passwd, my_json
 from conf.setting import MYRDS_HOST, MYRDS_PORT, RDS_DB
@@ -9,8 +12,6 @@ import redis
 from urllib import parse
 import base64
 import ast
-
-
 @server.route('/login', methods=['post'])
 def login():
     username = request.json.get("username")
@@ -139,3 +140,4 @@ def subscriberoot(setting_id):
     encodestr = base64.b64encode(shuchu.encode('utf-8'))
     print(str(encodestr, 'utf-8'))
     return str(encodestr, 'utf-8')
+'''

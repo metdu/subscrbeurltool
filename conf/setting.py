@@ -8,5 +8,5 @@ MYRDS_HOST = '你的ip'
 MYRDS_PORT = '6379'
 RDS_DB = 2
 
-SERVER_PORT = 8888  #
+SERVER_PORT = 8085  #
 SALT = 'dsadsadsada' #
